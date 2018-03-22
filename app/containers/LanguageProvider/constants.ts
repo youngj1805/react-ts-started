@@ -1,0 +1,1 @@
+export const CHANGE_LOCALE = 'app/containers/LanguageProvider/CHANGE_LOCALE';

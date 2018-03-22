@@ -1,75 +1,32 @@
-import 'file-loader?name=[name].[ext]!./favicon.ico';
-import '!file-loader?name=[name].[ext]!./manifest.json';
-import 'file-loader?name=[name].[ext]!./.htaccess';
+// Need for redux-saga es6 generator support
+import 'babel-polyfill';
 
+// Import all the third party stuff
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as OfflinePluginRuntime from 'offline-plugin/runtime';
-import * as FontFaceObserver from 'fontfaceobserver';
-const openSansObserver = new FontFaceObserver('Open Sans', {});
-const styles = require('app/containers/App/styles.module.css');
-
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
-    document.body.classList.add(styles.fontLoaded);
-}, () => {
-    document.body.classList.remove(styles.fontLoaded);
-});
-
-// Import i18n messages
-import { translationMessages } from './i18n';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
+import FontFaceObserver from 'fontfaceobserver';
+import 'sanitize.css/sanitize.css';
 
 import App from 'app/containers/App';
 
-const render = () => {
-    ReactDOM.render(
-        <App />,
-        document.getElementById('app')
-    )
-};
-// Hot reloadable translation json files
-if (module.hot) {
-    // modules.hot.accept does not accept dynamic dependencies,
-    // have to be constants at compile-time
-    module.hot.accept('./i18n', () => {
-        render();
-    })
-}
+// Import Language Provider
+import LanguageProvider from 'app/containers/LanguageProvider';
 
+import '!file-loader?name=[name].[ext]!./images/favicon.ico';
+import '!file-loader?name=[name].[ext]!./images/icon-72x72.png';
+import '!file-loader?name=[name].[ext]!./images/icon-96x96.png';
+import '!file-loader?name=[name].[ext]!./images/icon-120x120.png';
+import '!file-loader?name=[name].[ext]!./images/icon-128x128.png';
+import '!file-loader?name=[name].[ext]!./images/icon-144x144.png';
+import '!file-loader?name=[name].[ext]!./images/icon-152x152.png';
+import '!file-loader?name=[name].[ext]!./images/icon-167x167.png';
+import '!file-loader?name=[name].[ext]!./images/icon-180x180.png';
+import '!file-loader?name=[name].[ext]!./images/icon-192x192.png';
+import '!file-loader?name=[name].[ext]!./images/icon-384x384.png';
+import '!file-loader?name=[name].[ext]!./images/icon-512x512.png';
+import '!file-loader?name=[name].[ext]!./manifest.json';
+import 'file-loader?name=[name].[ext]!./.htaccess';
 
-// Chunked polyfill for browsers without Intl support
-if (!window.Intl) {
-    (new Promise((resolve) => {
-        resolve(System.import('intl'));
-    }))
-        .then(() => Promise.all([
-            System.import('intl/locale-data/jsonp/en.js'),
-            System.import('intl/locale-data/jsonp/de.js'),
-        ]))
-        .then(() => render())
-        .catch((err) => {
-            throw err;
-        });
-} else {
-    render();
-}
-
-
-// Install ServiceWorker and AppCache in the end since
-// it's not most important operation and if main code fails,
-// we do not want it installed
-if (process.env.NODE_ENV === 'production') {
-    OfflinePluginRuntime.install({
-        onUpdating: () => {
-            console.log('SW Event:', 'onUpdating');
-        },
-        onUpdateReady: () => {
-            console.log('SW Event:', 'onUpdateReady');
-            return OfflinePluginRuntime.applyUpdate();
-        },
-        onUpdated: () => {
-            console.log('SW Event:', 'onUpdated');
-            window.swUpdate = true;
-        },
-    });
-}
+import configureStore from './configureStore'
