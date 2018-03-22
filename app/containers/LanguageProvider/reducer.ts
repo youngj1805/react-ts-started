@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { DEFAULT_LOCALE } from 'app/containers/App/constanst';
+import { DEFAULT_LOCALE } from 'app/containers/App/constansts';
 
 import { CHANGE_LOCALE } from './constants';
 

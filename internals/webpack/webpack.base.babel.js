@@ -39,12 +39,12 @@ module.exports = (options) => ({
       // Transform our own .css files with PostCSS
       test: /^((?!\.module).)*(\.css)$/,
       exclude: [/node_modules/],
-      use: options.cssLoaders,
+      use: ['style-loader', 'css-loader'],
     }, {
       // Transform our own .local.css files with PostCSS and CSS-modules
       test: /\.module\.css$/,
       include: /app/,
-      use: options.cssLoadersLocal,
+      use: ['style-loader', 'css-loader'],
     }, {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       use: 'file-loader',
