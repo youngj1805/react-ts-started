@@ -1,0 +1,7 @@
+[
+    {
+        "id": "app.containers.App.hello_text",
+        "defaultMessage": "Xin chào",
+        "message": "Xin chào"
+    }
+]
