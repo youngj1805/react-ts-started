@@ -9,15 +9,28 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "jsx": "preserve",
-    "lib": ["dom","es5","es6","es7","es2017"],
+    "lib": [
+      "dom",
+      "es5",
+      "es6",
+      "es7",
+      "es2017"
+    ],
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["node_modules/@types"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "baseUrl": ".",
     "paths": {
       "*": [
         "*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
   },
   "exclude": [
     "node_modules"

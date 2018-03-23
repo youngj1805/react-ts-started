@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { createStructuredSelector, createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
 
 import { makeSelectLocale } from './selectors';
@@ -21,8 +21,9 @@ class LanguageProvider extends React.PureComponent<IProps, {}>{
     }
 }
 
-const mapStateToProps = createStructuredSelector({
-    locale: makeSelectLocale()
-});
+const mapStateToProps = createSelector(
+    makeSelectLocale(),
+    locale => ({ locale })
+);
 
 export default connect(mapStateToProps, null)(LanguageProvider);

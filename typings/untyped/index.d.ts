@@ -100,4 +100,5 @@ declare module "react-router-scroll" {
 interface Window {
   Intl: any;
   swUpdate: boolean;
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
 }

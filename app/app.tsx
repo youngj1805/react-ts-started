@@ -51,11 +51,12 @@ const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = (messages) => {
-    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     ReactDOM.render(
         <Provider store={store}>
             <LanguageProvider messages={messages}>
-                <App />
+                <ConnectedRouter history={history}>
+                    <App />
+                </ConnectedRouter>
             </LanguageProvider>
         </Provider>,
         MOUNT_NODE
@@ -67,6 +68,7 @@ if (module.hot) {
     // modules.hot.accept does not accept dynamic dependencies,
     // have to be constants at compile-time
     module.hot.accept('app/containers/App', () => {
+        ReactDOM.unmountComponentAtNode(MOUNT_NODE);
         import('app/containers/App').then(() => {
             render(translationMessages);
         })
