@@ -7,8 +7,9 @@ import Button from 'app/components/Button';
 import Header from 'app/components/Header';
 import Footer from 'app/components/Footer';
 
-import HomePage from 'app/containers/HomePage';
+import HomePage from 'app/containers/HomePage/Loadable';
 import FeaturesPage from 'app/containers/FeaturesPage';
+import NotFoundPage from 'app/containers/NotFoundPage/Loadable';
 
 import AppWrapper from './AppWrapper'
 import messages from './messages';
@@ -27,6 +28,7 @@ class App extends React.Component<{}, {}>{
                 <Switch>
                     <Route exact path='/' component={HomePage} />
                     <Route path='/features' component={FeaturesPage} />
+                    <Route path='' component={NotFoundPage} />
                 </Switch>
                 <Footer />
             </AppWrapper>

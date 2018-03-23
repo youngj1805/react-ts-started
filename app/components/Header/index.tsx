@@ -14,12 +14,13 @@ const Header = () => (
         </A>
         <Navbar>
             <HeaderLink to='/'>
-                {/* <FormattedMessage {...messages.home} /> */}
-                Home
+                <FormattedMessage {...messages.home} />
             </HeaderLink>
             <HeaderLink to='/features'>
-                {/* <FormattedMessage {...messages.features} /> */}
-                Features
+                <FormattedMessage {...messages.features} />
+            </HeaderLink>
+            <HeaderLink to='/notfound'>
+                another route
             </HeaderLink>
         </Navbar>
     </div>
